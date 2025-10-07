@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multiplication Table Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input, button {
+      padding: 8px;
+      font-size: 16px;
+    }
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 50%;
+    }
+    td, th {
+      border: 1px solid #444;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f1b8b8cf;
+    }
+  </style>
+</head>
+<body>
+  <h2>Generate Multiplication Table</h2>
+  <input type="number" id="numberInput" placeholder="Enter a number" />
+  <button onclick="generateTable()">Show Table</button>
+
+  <div id="output"></div>
+
+  <script>
+    function generateTable() {
+      const num = parseInt(document.getElementById('numberInput').value);
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = ''; // Clear previous results
+
+      if (isNaN(num)) {
+        outputDiv.textContent = 'Please enter a valid number.';
+        return;
+      }
+
+      // --- Using console.log (for debugging or learning) ---
+      console.log(`Multiplication Table for ${num}`);
+      for (let i = 1; i <= 10; i++) {
+        console.log(`${num} * ${i} = ${num * i}`);
+      }
+
+      // --- Build an HTML table dynamically ---
+      const table = document.createElement('table');
+      const header = document.createElement('tr');
+      header.innerHTML = `<th>${num} × i</th><th>Result</th>`;
+      table.appendChild(header);
+
+      for (let i = 1; i <= 10; i++) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${num} × ${i}</td><td>${num * i}</td>`;
+        table.appendChild(row);
+      }
+
+      outputDiv.appendChild(table);
+    }
+  </script>
+</body>
+</html>
